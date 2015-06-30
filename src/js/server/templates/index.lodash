@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lovesick</title>
+	<link rel="stylesheet" type="text/css" href="<%= staticFileUrl %>/style.css">
+</head>
+<body>
+
+	<div id="app-container"><%= content %></div>
+
+	<script type="text/javascript" src="<%= staticFileUrl %>/app.js"></script>
+
+	<%= iso %>
+</body>
+</html>
