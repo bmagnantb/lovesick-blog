@@ -1,10 +1,10 @@
 {
   "name": "lovesick-blog-podcast",
   "version": "1.0.0",
-  "description": "Blog and podcast on living with chronic disease",
+  "description": "Blog on living with chronic disease",
   "main": "server.js",
   "scripts": {
-    "start": "npm run watch & node server.js",
+    "start": "npm run watch & babel-node server.js",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:js'",
     "watch:css": "watch 'npm run build:css' ./src/scss",
     "watch:js": "watchify ./src/js/client/app.js --extension=.jsx -t babelify -o ./build/app.js -v",

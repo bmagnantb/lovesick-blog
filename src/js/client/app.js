@@ -2,9 +2,7 @@ import React from 'react'
 import Router from 'react-router'
 import Iso from 'iso'
 
-import routes from './routes'
-import AltApp from './AltApp'
-import AltContext from './components/AltContext'
+import { routes, AltApp, AltContext } from '../app'
 
 window.onload = app
 

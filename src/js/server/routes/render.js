@@ -4,15 +4,9 @@ import Iso from 'iso'
 import Bluebird from 'bluebird'
 import config from 'config'
 
-import routes from '../../client/routes'
-import AltApp from '../../client/AltApp'
-
-import AltContext from '../../client/components/AltContext'
+import { routes, AltApp, AltContext } from '../../app'
 
 export default function render(req, res) {
-
-	var alt = new AltApp()
-	var iso = new Iso()
 
 	var router = Router.create({
 		routes,
@@ -28,6 +22,10 @@ export default function render(req, res) {
 	})
 
 	router.run((Handler, state) => {
+
+		var alt = new AltApp()
+		var iso = new Iso()
+
 		//first render
 		React.renderToString(<AltContext alt={alt} childComponent={Handler} />)
 

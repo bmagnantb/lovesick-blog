@@ -2,13 +2,13 @@ import React from 'react'
 
 import Autobind from '../Autobind'
 
-export default function injectBlogStore(Component, injectedProps) {
-	class BlogContainer extends Autobind {
+export default function injectPosts(Component, injectedProps) {
+	class PostsContainer extends Autobind {
 		constructor(props, context) {
 			super(props, context)
 
-			this._store = context.alt.getStore('blog')
-			this._actions = context.alt.getActions('blog')
+			this._store = context.alt.getStore('posts')
+			this._actions = context.alt.getActions('posts')
 
 			this.state = this._store.getState()
 		}
@@ -26,14 +26,14 @@ export default function injectBlogStore(Component, injectedProps) {
 			return <Component {...injectedProps} storeData={this.state} />
 		}
 
-		_shouldStoreFetch(blogId) {
-			if (!this.state.blogCache[blogId]) this._actions.getBlogPost(blogId)
+		_shouldStoreFetch(postId) {
+			if (!this.state.postCache[postId]) this._actions.getPost(postId)
 		}
 	}
 
-	BlogContainer.contextTypes = {
+	PostsContainer.contextTypes = {
 		alt: React.PropTypes.object.isRequired
 	}
 
-	return BlogContainer
+	return PostsContainer
 }

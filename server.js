@@ -1,18 +1,17 @@
-"use strict"
+import piping from 'piping'
+import express from 'express'
 
-if (!require('piping')({hook: true})) return false
+import server from './src/js/server'
 
-require('babel/register')
+if (process.env.PRODUCTION || piping({hook: true})) {
 
-var express = require('express')
-var app = express()
+	var app = express()
 
-app.use(express.static(__dirname + '/build'))
+	app.use(express.static(__dirname + '/build'))
 
-require('./src/js/server/addRenderEngine')(app)
+	server(app)
 
-require('./src/js/server/routes')(app)
-
-app.listen(process.env.PORT || 3000, function() {
-	console.log('apping')
-})
+	app.listen(process.env.PORT || 3000, () => {
+		console.log('apping')
+	})
+}
