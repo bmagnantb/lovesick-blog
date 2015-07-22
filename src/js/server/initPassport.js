@@ -15,7 +15,6 @@ export default function(passport) {
 		passport.use(new Strategy(
 			(username, password, done) => {
 				var user = findUser(username)
-				console.log('found user', user)
 				if (!user) return done(null, false)
 				if (user.password !== password) return done(null, false)
 				done(null, user)
@@ -24,7 +23,6 @@ export default function(passport) {
 }
 
 function findUser(username) {
-	console.log(users)
 	return users.filter(user => user.username === username)[0]
 }
 

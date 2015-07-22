@@ -19,7 +19,6 @@ function app() {
 				username.focus()
 			}
 			else {
-				console.log(resp.text)
 				document.location.pathname = resp.text
 			}
 		})

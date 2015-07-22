@@ -18,7 +18,6 @@ export default function addAdminRoutes(app, passport) {
 	})
 
 	app.get('/admin', (req, res) => {
-		console.log(req.user)
 		res.redirect('/admin/login')
 	})
 }
