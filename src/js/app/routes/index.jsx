@@ -11,5 +11,3 @@ export default (
 		<Redirect from="*" to="home" />
 	</Route>
 )
-
-// <Route name="home" path="/vlog/:id" handler={StoreContainers.injectVlog(VlogPostView)} />

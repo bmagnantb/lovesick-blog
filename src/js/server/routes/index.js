@@ -1,7 +1,5 @@
 import render from './render'
 
-export default server
-
-function server(app) {
+export default function addRoutes(app) {
 	app.get('*', render)
 }

@@ -1,16 +1,17 @@
 import express from 'express'
 
 import addRenderEngine from './addRenderEngine'
+import addAdminRoutes from './admin-routes'
 import addRoutes from './routes'
+import faviconIgnore from './faviconIgnore'
+import initPassport from './initPassport'
+import checkAuth from './utils/checkAuth'
 
-export default function server(app) {
-
-	addRenderEngine(app)
-
-	app.use((req, res, next) => {
-		if (req.path === '/favicon.ico') res.sendStatus(404)
-		next()
-	})
-
-	addRoutes(app)
+export default {
+	addRenderEngine,
+	addAdminRoutes,
+	addRoutes,
+	faviconIgnore,
+	initPassport,
+	checkAuth
 }
