@@ -9,15 +9,9 @@ export default function addAdminRoutes(app, passport) {
 	app.post('/admin/login',
 		passport.authenticate('local'),
 		(req, res) => {
-			res.send('/admin/authenticated')
+			res.send('/admin/')
 		}
 	)
 
-	app.get('/admin/authenticated', (req, res) => {
-		res.render('authenticated')
-	})
-
-	app.get('/admin', (req, res) => {
-		res.redirect('/admin/login')
-	})
+	app.get('/admin', render)
 }

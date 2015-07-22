@@ -35,7 +35,7 @@ export default function render(req, res) {
 			// 2nd render & send
 			var content = React.renderToString(<AltContext alt={alt} childComponent={Handler} />)
 			iso.add('', alt.takeSnapshot())
-			res.render('index', {content, iso: iso.render(), staticFileUrl: process.env.STATIC_FILE_URL || config.get('staticFileUrl')})
+			res.render('authenticated', {content, iso: iso.render(), staticFileUrl: process.env.STATIC_FILE_URL || config.get('staticFileUrl')})
 		})
 
 

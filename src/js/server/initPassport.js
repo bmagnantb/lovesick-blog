@@ -1,6 +1,7 @@
+import config from 'config'
 import { Strategy } from 'passport-local'
 
-import users from './keys/users'
+var users = config.get('users')
 
 export default function(passport) {
 
