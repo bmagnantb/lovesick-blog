@@ -1,17 +1,21 @@
 import express from 'express'
 
-import addRenderEngine from './addRenderEngine'
 import addAdminRoutes from './admin-routes'
+import addRenderEngine from './addRenderEngine'
 import addRoutes from './routes'
-import faviconIgnore from './faviconIgnore'
-import initPassport from './initPassport'
-import checkAuth from './utils/checkAuth'
+import {
+	checkAuth,
+	connectMongo,
+	faviconIgnore,
+	initPassport
+} from './utils'
 
 export default {
-	addRenderEngine,
 	addAdminRoutes,
 	addRoutes,
+	addRenderEngine,
+	checkAuth,
+	connectMongo,
 	faviconIgnore,
 	initPassport,
-	checkAuth
 }

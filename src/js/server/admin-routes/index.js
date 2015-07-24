@@ -1,3 +1,4 @@
+import { connectMongo } from '../utils'
 import render from './render'
 
 export default function addAdminRoutes(app, passport) {
@@ -7,11 +8,12 @@ export default function addAdminRoutes(app, passport) {
 	})
 
 	app.post('/admin/login',
+		connectMongo,
 		passport.authenticate('local'),
 		(req, res) => {
 			res.send('/admin/')
 		}
 	)
 
-	app.get('/admin', render)
+	app.get('/admin/', render)
 }

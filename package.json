@@ -44,7 +44,7 @@
     "iso": "^4.1.0",
     "lodash": "^3.9.3",
     "mocha": "^2.2.5",
-    "mongodb": "^2.0.35",
+    "mongodb": "^2.0.39",
     "node-sass": "^3.2.0",
     "parallelshell": "^1.1.1",
     "passport": "^0.2.2",

@@ -4,7 +4,7 @@ import Iso from 'iso'
 import Bluebird from 'bluebird'
 import config from 'config'
 
-import { routes, AltApp, AltContext } from '../../admin-app'
+import { AltApp, AltContext, routes } from '../../admin-app'
 
 export default function render(req, res) {
 
