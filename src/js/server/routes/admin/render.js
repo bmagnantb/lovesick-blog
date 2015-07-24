@@ -4,13 +4,13 @@ import Iso from 'iso'
 import Bluebird from 'bluebird'
 import config from 'config'
 
-import { AltApp, AltContext, routes } from '../../admin-app'
+import { AltApp, AltContext, routes } from '../../../admin-app'
 
 export default function render(req, res) {
 
 	var router = Router.create({
 		routes,
-		location: req.path,
+		location: req.originalUrl,
 		onAbort: (reason) => {
 			if (reason.constructor.name === 'Redirect') {
 				var { to, params, query } = reason

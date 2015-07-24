@@ -8,11 +8,13 @@ function app() {
 
 	form.addEventListener('submit', (evt) => {
 		evt.preventDefault()
+		console.log(evt)
 		var username = document.querySelector('#username')
 		var password = document.querySelector('#password').value
 		var user = { username: username.value, password }
 		var post = request.post('/admin/login').query(user).end()
 		post.then((resp) => {
+			console.log(resp)
 			if (resp.status === 401) {
 				document.querySelector('#login-error').innerHTML = '<h5>Login incorrect.</h5>'
 				form.reset()

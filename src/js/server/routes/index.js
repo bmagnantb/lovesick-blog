@@ -1,5 +1,9 @@
-import render from './render'
+import admin from './admin'
+import adminLogin from './adminLogin'
+import main from './main'
 
-export default function addRoutes(app) {
-	app.get('*', render)
+export default {
+	admin,
+	adminLogin,
+	main
 }

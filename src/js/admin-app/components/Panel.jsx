@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import Autobind from './Autobind'
 
@@ -6,7 +7,8 @@ export default class Panel extends Autobind {
 	render() {
 		return (
 			<div>
-				<h2>Control Panel</h2>
+				<Link to="/admin/new-video">New Video</Link>
+				<Link to="/admin/new-article">New Article</Link>
 			</div>
 		)
 	}

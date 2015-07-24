@@ -1,11 +1,9 @@
-import checkAuth from './checkAuth'
 import connectMongo from './connectMongo'
-import faviconIgnore from './faviconIgnore'
-import initPassport from './initPassport'
+import { authMiddleware, checkAuth, initPassport } from './auth'
 
 export default {
+	authMiddleware,
 	checkAuth,
 	connectMongo,
-	faviconIgnore,
 	initPassport
 }
