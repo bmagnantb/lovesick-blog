@@ -1,5 +1,7 @@
 import HomeView from './HomeView'
+import NewPostView from './NewPostView'
 
 export default {
-	HomeView
+	HomeView,
+	NewPostView
 }

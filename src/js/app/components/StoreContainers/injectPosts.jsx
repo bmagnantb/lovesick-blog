@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Autobind from '../Autobind'
+import { Autobind } from '../../../react-utils'
 
 export default function injectPosts(Component, injectedProps) {
 	class PostsContainer extends Autobind {

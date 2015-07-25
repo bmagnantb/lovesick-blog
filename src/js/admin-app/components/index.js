@@ -1,13 +1,9 @@
-import AltContext from './AltContext'
-import Autobind from './Autobind'
-import NewArticle from './NewArticle'
-import NewVideo from './NewVideo'
+import NewPostForm from './NewPostForm'
 import Panel from './Panel'
+import Preview from './Preview'
 
 export default {
-	AltContext,
-	Autobind,
-	NewArticle,
-	NewVideo,
-	Panel
+	NewPostForm,
+	Panel,
+	Preview
 }

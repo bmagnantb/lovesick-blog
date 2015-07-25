@@ -6,7 +6,6 @@ import { getDb } from '../connectMongo'
 export default function(passport) {
 
 	passport.serializeUser((user, done) => {
-		console.log('serializing', user)
 		done(null, user.id)
 	})
 
@@ -14,7 +13,6 @@ export default function(passport) {
 		getDb().then((db) => {
 			db.collection('users').findOne({id: id}, (err, doc) => {
 				db.close()
-				console.log('deserializing', doc)
 				done(null, doc)
 			})
 		})

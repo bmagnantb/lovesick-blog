@@ -2,12 +2,13 @@ import React from 'react'
 import Router from 'react-router'
 import Iso from 'iso'
 
-import { routes, AltApp, AltContext } from '../admin-app'
+import { routes, newAltApp } from '../admin-app'
+import { AltContext } from '../react-utils'
 
 window.onload = app
 
 function app() {
-	var alt = new AltApp()
+	var alt = newAltApp()
 
 	Iso.bootstrap((state, meta, node) => {
 		alt.bootstrap(state)

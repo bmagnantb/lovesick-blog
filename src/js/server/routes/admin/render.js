@@ -4,7 +4,8 @@ import Iso from 'iso'
 import Bluebird from 'bluebird'
 import config from 'config'
 
-import { AltApp, AltContext, routes } from '../../../admin-app'
+import { newAltApp, routes } from '../../../admin-app'
+import { AltContext } from '../../../react-utils'
 
 export default function render(req, res) {
 
@@ -23,7 +24,7 @@ export default function render(req, res) {
 
 	router.run((Handler, state) => {
 
-		var alt = new AltApp()
+		var alt = newAltApp()
 		var iso = new Iso()
 
 		//first render

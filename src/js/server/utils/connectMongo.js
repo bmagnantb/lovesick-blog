@@ -6,7 +6,7 @@ var mongoUrl = 'mongodb://localhost:27017/lovesick'
 
 export default function middleware(req, res, next) {
 	MongoClient.connect(mongoUrl, (err, db) => {
-		if (err) return console.log(err)
+		if (err) return res.status(500).send('failed to connect to user database')
 		req.mongoDb = db
 		next()
 	})

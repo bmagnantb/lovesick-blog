@@ -28,16 +28,14 @@ if (process.env.PRODUCTION || piping({hook: true})) {
 		authMiddleware.session,
 		authMiddleware.pInit,
 		authMiddleware.pSession,
-		(req, res, next) => req.isAuthenticated ? next() : null,
+		(req, res, next) => req.isAuthenticated() ? next() : res.redirect('/admin/login'),
 		express.static(__dirname + '/build/admin'),
 		admin
 	)
 
 	app.use(express.static(__dirname + '/build'))
 
-	app.use('*',
-		main
-	)
+	app.use('*', main)
 
 	app.listen(process.env.PORT || 3000, () => {
 		console.log('apping')

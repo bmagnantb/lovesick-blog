@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { Autobind, BlogPost, Comment, Sidebar, VlogPost } from '../components'
+import { Autobind } from '../../react-utils'
+import { BlogPost, Comment, Sidebar, VlogPost } from '../components'
 
 export default class PostView extends Autobind {
 	constructor(props, context) {

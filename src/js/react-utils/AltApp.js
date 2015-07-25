@@ -1,10 +1,7 @@
 import Alt from 'alt'
 
-import actions from './actions'
-import stores from './stores'
-
 export default class AltApp extends Alt {
-	constructor(config = {}) {
+	constructor(actions, stores, config = {}) {
 		super(config)
 
 		actions.forEach((val) => {
@@ -18,4 +15,3 @@ export default class AltApp extends Alt {
 		this.asyncActions = []
 	}
 }
-
