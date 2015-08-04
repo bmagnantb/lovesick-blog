@@ -4,8 +4,8 @@ export default class BlogPost {
 	render() {
 		return (
 			<div className="blog-post">
-				<h2>My Blog Post #{this.props.post.id}</h2>
-				<p>{this.props.post.body}</p>
+				<h2>{this.props.post.title.replace(/-/g, ' ')}</h2>
+				<div dangerouslySetInnerHTML={{__html: this.props.post.body}} />
 			</div>
 		)
 	}

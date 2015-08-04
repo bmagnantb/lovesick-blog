@@ -44,7 +44,7 @@ export default class NewPostView extends Autobind {
 
 	render() {
 		return (
-			<div>
+			<div className="new-post">
 				<NewPostForm ref="postForm" postType={this.context.router.getCurrentPath().substr(11)} handlers={this.handlers} />
 				<Preview post={this.state} />
 			</div>

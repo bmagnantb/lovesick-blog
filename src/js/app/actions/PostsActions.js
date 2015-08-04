@@ -1,14 +1,29 @@
-import { getPost } from '../api'
+import { getMostRecentVlog, getPostByTitle, getPostsByDate } from '../api'
 
 var name = 'posts'
 
 var actions = class PostsActions {
-	getPost(postId) {
-		var request = getPost(postId)
-		request.then((data) => {
-			this.dispatch(data)
-		})
+
+	getMostRecentVlog() {
+		var request = getMostRecentVlog()
+		request.then(data => this.dispatch(data))
 		this.alt.asyncActions.push(request)
+	}
+
+	getPostByTitle(title) {
+		var request = getPostByTitle(title)
+		request.then(data => this.dispatch(data))
+		this.alt.asyncActions.push(request)
+	}
+
+	getPostsByDate(dateArray) {
+		var request = getPostsByDate(dateArray)
+		request.then(data => this.dispatch(data))
+		this.alt.asyncActions.push(request)
+	}
+
+	setDateSearch(is, date) {
+		this.dispatch({is, date})
 	}
 }
 

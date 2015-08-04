@@ -1,34 +1,30 @@
 import React from 'react'
+import _ from 'lodash'
 
 import { Autobind } from '../../react-utils'
-import { BlogPost, Comment, Sidebar, VlogPost } from '../components'
+import { BlogPost, DateSearch, Sidebar, VlogPost } from '../components'
 
 export default class PostView extends Autobind {
 	constructor(props, context) {
 		super(props, context)
-		this._bind('_submitComment')
 	}
 
 	render() {
-		console.log(this.props.storeData.currentPost)
-		var PostComponent = this.props.storeData.currentPost.type === 'blog'
-			? BlogPost
-			: VlogPost
+		if (_.isEmpty(this.props.storeData.currentPost) && !this.props.storeData.dateSearch.is) return <div className="post-view"></div>
+
+		var PostComponent
+		if (this.props.storeData.currentPost.type === 'blog') PostComponent = <BlogPost post={this.props.storeData.currentPost} />
+		else if (this.props.storeData.currentPost.type === 'vlog') PostComponent = <VlogPost post={this.props.storeData.currentPost} />
+		else if (this.props.storeData.dateSearch.is) PostComponent = <DateSearch results={this.props.storeData.dateSearch.results} />
 
 		return (
 			<div className="post-view">
 				<main>
-					<PostComponent post={this.props.storeData.currentPost} />
+					{PostComponent}
 				</main>
 				<Sidebar />
 			</div>
 		)
-	}
-
-	_submitComment(evt) {
-		evt.preventDefault()
-		// action to post comment + optimistic post
-		console.log('posting comment')
 	}
 }
 
