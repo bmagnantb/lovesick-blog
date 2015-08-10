@@ -2,17 +2,24 @@ import React from 'react'
 import Rx from 'rx'
 import marked from 'marked'
 
-import { Autobind, makeEventStream } from '../../react-utils'
+import { Autobind, makeEventStream } from '../../utils'
 import { NewPostForm, Preview } from '../components'
 
 marked.setOptions({ sanitize: true })
 
 export default class NewPostView extends Autobind {
 
-	constructor() {
-		super()
+	constructor(props, context) {
+		super(props, context)
 
-		this.state = {}
+		var postType = context.router.getCurrentPath().substr(11) === 'article'
+			? 'blog'
+			: 'vlog'
+
+		this.state = {
+			title: '',
+			type: postType
+		}
 	}
 
 	componentWillMount() {

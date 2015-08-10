@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 
-import { Autobind } from '../../../react-utils'
+import { Autobind } from '../../../utils'
 
 export default function injectPosts(Component, injectedProps) {
 	class PostsContainer extends Autobind {

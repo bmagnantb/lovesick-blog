@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import { Autobind } from '../../react-utils'
-
-export default class Panel extends Autobind {
+export default class Panel {
 	render() {
 		return (
 			<div>

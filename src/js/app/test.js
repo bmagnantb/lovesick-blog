@@ -4,7 +4,7 @@ import Bluebird from 'bluebird'
 
 import api from './api'
 import newAltApp from './newAltApp'
-import { AltApp } from '../react-utils'
+import { AltApp } from '../utils'
 import actions from './actions'
 import stores from './stores'
 
