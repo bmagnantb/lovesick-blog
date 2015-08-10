@@ -1,9 +1,9 @@
 import React from 'react'
 import Router from 'react-router'
 import Iso from 'iso'
+import AltContainer from 'alt/AltContainer'
 
 import { routes, newAltApp } from '../admin-app'
-import { AltContext } from '../react-utils'
 
 window.onload = app
 
@@ -14,7 +14,7 @@ function app() {
 		alt.bootstrap(state)
 
 		Router.run(routes, Router.HistoryLocation, (Handler, state) => {
-			React.render(<AltContext alt={alt} childComponent={Handler} />, document.querySelector('#app-container'))
+			React.render(<AltContainer flux={alt}><Handler /></AltContainer>, document.querySelector('#app-container'))
 		})
 	})
 }

@@ -19,7 +19,13 @@ var posts = [
 	}
 ]
 
-export function getMostRecentVlog() {
+export default {
+	getMostRecentVlog,
+	getPostByTitle,
+	getPostsByDate
+}
+
+function getMostRecentVlog() {
 	return new Bluebird((resolve, reject) => {
 		setTimeout(() => {
 			var response = posts.filter(post => post.type === 'vlog')[0]
@@ -28,7 +34,7 @@ export function getMostRecentVlog() {
 	})
 }
 
-export function getPostByTitle(title) {
+function getPostByTitle(title) {
 	return new Bluebird((resolve, reject) => {
 		setTimeout(() => {
 			var response = posts.filter(post => post.title === title)[0]
@@ -37,10 +43,9 @@ export function getPostByTitle(title) {
 	})
 }
 
-export function getPostsByDate(dateArray) {
+function getPostsByDate(dateArray) {
 	return new Bluebird((resolve, reject) => {
 		setTimeout(() => {
-			dateArray = dateArray.map(string => Number.parseInt(string))
 			var response = posts.filter(post => _.isEqual(post.date.slice(0, dateArray.length), dateArray))
 			resolve(response)
 		})

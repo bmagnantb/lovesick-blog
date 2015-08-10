@@ -8,8 +8,8 @@ export default function injectPosts(Component, injectedProps) {
 		constructor(props, context) {
 			super(props, context)
 
-			this._store = context.alt.getStore('posts')
-			this._actions = context.alt.getActions('posts')
+			this._store = context.flux.getStore('posts')
+			this._actions = context.flux.getActions('posts')
 
 			this.state = this._store.getState()
 
@@ -46,7 +46,7 @@ export default function injectPosts(Component, injectedProps) {
 			if (date === date) {
 
 				// only allow year, month, day
-				var dateArray = title.split('-')
+				var dateArray = title.split('-').map(string => Number.parseInt(string))
 
 				// check if already cached
 				if (_.isEqual(this.state.dateSearch.date, dateArray)) return this._actions.setDateSearch(true, dateArray)
@@ -68,8 +68,7 @@ export default function injectPosts(Component, injectedProps) {
 	}
 
 	PostsContainer.contextTypes = {
-		alt: React.PropTypes.object.isRequired,
-		router: React.PropTypes.func.isRequired
+		flux: React.PropTypes.object.isRequired
 	}
 
 	return PostsContainer
