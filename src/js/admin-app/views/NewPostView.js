@@ -7,40 +7,27 @@ import { NewPostForm, Preview } from '../components'
 
 marked.setOptions({ sanitize: true })
 
-export default class NewPostView extends Autobind {
-
-	constructor(props, context) {
-		super(props, context)
-
-		var postType = context.router.getCurrentPath().substr(11) === 'article'
-			? 'blog'
-			: 'vlog'
-
-		this.state = {
-			title: '',
-			type: postType
-		}
-	}
+export default class NewPostView {
 
 	componentWillMount() {
 		var updateTitle$ = makeEventStream()
 		updateTitle$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.title).value)
-			.subscribe(title => this.setState({ title }))
+			.subscribe(title => this.props.actions.updatePost({ title }))
 
 		var updateBody$ = makeEventStream()
 		updateBody$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.body).value)
 			.map(markdown => marked(markdown))
-			.subscribe(body => this.setState({ body }))
+			.subscribe(body => this.props.actions.updatePost({ body }))
 
 		var updateUrl$ = makeEventStream()
 		updateUrl$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.url).value)
-			.subscribe(url => this.setState({ url }))
+			.subscribe(url => this.props.actions.updatePost({ url }))
 
 		this.handlers = {
 			updateTitle$,
@@ -52,13 +39,9 @@ export default class NewPostView extends Autobind {
 	render() {
 		return (
 			<div className="new-post">
-				<NewPostForm ref="postForm" postType={this.context.router.getCurrentPath().substr(11)} handlers={this.handlers} />
-				<Preview post={this.state} />
+				<NewPostForm ref="postForm" postType={this.props.data.post.type} handlers={this.handlers} />
+				<Preview post={this.props.data.post} />
 			</div>
 		)
 	}
-}
-
-NewPostView.contextTypes = {
-	router: React.PropTypes.func.isRequired
 }
