@@ -6,19 +6,19 @@ var actions = class PostsActions {
 
 	getMostRecentVlog() {
 		var request = getMostRecentVlog()
-		request.then(data => this.dispatch(data))
+		request.then(({body}) => this.dispatch(body))
 		this.alt.asyncActions.push(request)
 	}
 
 	getPostByTitle(title) {
 		var request = getPostByTitle(title)
-		request.then(data => this.dispatch(data))
+		request.then(({body}) => this.dispatch(body))
 		this.alt.asyncActions.push(request)
 	}
 
 	getPostsByDate(dateArray) {
 		var request = getPostsByDate(dateArray)
-		request.then(data => this.dispatch(data))
+		request.then(({body}) => this.dispatch(body))
 		this.alt.asyncActions.push(request)
 	}
 
