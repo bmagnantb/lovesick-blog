@@ -7,6 +7,7 @@ export default function getPostsByDate(req, res) {
 
 	req.mongoDb.collection('posts').find(params)
 		.toArray((err, docs) => {
+			req.mongoDb.close()
 			if (err) res.send(err)
 			res.send(docs)
 		})
