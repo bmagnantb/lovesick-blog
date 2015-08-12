@@ -36,7 +36,11 @@ export default function render(req, res) {
 			// 2nd render & send
 			var content = React.renderToString(<AltContainer flux={alt}><Handler /></AltContainer>)
 			iso.add('', alt.takeSnapshot())
-			res.render('index', {content, iso: iso.render(), staticFileUrl: process.env.STATIC_FILE_URL || config.get('staticFileUrl')})
+			res.render('index', {
+				content,
+				iso: iso.render(),
+				staticFileUrl: process.env.SERVER_URL || config.get('serverUrl')
+			})
 		})
 
 
