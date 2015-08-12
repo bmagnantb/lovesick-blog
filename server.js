@@ -15,7 +15,7 @@ if (process.env.PRODUCTION || piping({hook: true})) {
 	addRenderEngine(app)
 	initPassport(passport)
 
-	app.use('(/*)*/favicon.ico', (req, res, next) => {
+	app.use('*/favicon.ico', (req, res, next) => {
 		res.sendStatus(404)
 	})
 
@@ -35,7 +35,7 @@ if (process.env.PRODUCTION || piping({hook: true})) {
 
 	app.use(express.static(__dirname + '/build'))
 
-	app.use('*', main)
+	app.use('/', main)
 
 	app.listen(process.env.PORT || 3000, () => {
 		console.log('apping')
