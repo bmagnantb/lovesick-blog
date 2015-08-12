@@ -5,12 +5,12 @@ import { VlogPost, Sidebar } from '../components'
 
 export default class HomeView {
 	render() {
-		if (_.isEmpty(this.props.storeData.currentPost)) return <div className="post-view"></div>
+		if (_.isEmpty(this.props.data.currentPost)) return <div className="post-view"></div>
 
 		return (
 			<div className="home-view">
 				<main className="home">
-					<VlogPost post={this.props.storeData.currentPost} />
+					<VlogPost post={this.props.data.currentPost} />
 				</main>
 				<Sidebar />
 			</div>

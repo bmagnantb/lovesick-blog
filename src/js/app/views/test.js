@@ -20,7 +20,7 @@ describe('app views:', () => {
 			var mock
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				renderer.render(<HomeView storeData={{
+				renderer.render(<HomeView data={{
 					currentPost: {}
 				}} />)
 				mock = renderer.getRenderOutput()
@@ -38,7 +38,7 @@ describe('app views:', () => {
 			var mock
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				mock = renderer.render(<HomeView storeData={{ currentPost: mockPosts[1] }} />)
+				mock = renderer.render(<HomeView data={{ currentPost: mockPosts[1] }} />)
 				mock = renderer.getRenderOutput()
 			})
 
@@ -76,7 +76,7 @@ describe('app views:', () => {
 			var mock
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				renderer.render(<PostView storeData={{
+				renderer.render(<PostView data={{
 					currentPost: {},
 					dateSearch: {
 						is: false
@@ -97,7 +97,7 @@ describe('app views:', () => {
 			var mock, mock2
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				renderer.render(<PostView storeData={{
+				renderer.render(<PostView data={{
 					currentPost: {},
 					dateSearch: {
 						is: true,
@@ -106,7 +106,7 @@ describe('app views:', () => {
 					}
 				}} />)
 				mock = renderer.getRenderOutput()
-				renderer.render(<PostView storeData={{
+				renderer.render(<PostView data={{
 					currentPost: mockPosts[1],
 					dateSearch: {
 						is: true,
@@ -142,7 +142,7 @@ describe('app views:', () => {
 			var mock
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				renderer.render(<PostView storeData={{
+				renderer.render(<PostView data={{
 					currentPost: mockPosts[0],
 					dateSearch: {
 						is: false
@@ -171,7 +171,7 @@ describe('app views:', () => {
 			var mock
 			before(() => {
 				var renderer = TestUtils.createRenderer()
-				renderer.render(<PostView storeData={{
+				renderer.render(<PostView data={{
 					currentPost: mockPosts[1],
 					dateSearch: {
 						is: false

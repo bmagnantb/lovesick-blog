@@ -1,42 +1,31 @@
 import React from 'react'
 import _ from 'lodash'
+import AltContainer from 'alt/AltContainer'
 
-import { Autobind } from '../../../utils'
-
-export default function injectPosts(Component, injectedProps) {
-	class PostsContainer extends Autobind {
+export default function injectPosts(Component) {
+	class PostsContainer {
 		constructor(props, context) {
-			super(props, context)
-
 			this._store = context.flux.getStore('posts')
 			this._actions = context.flux.getActions('posts')
-
-			this.state = this._store.getState()
-
-			this._bind('_onStoreChange')
 		}
 
 		componentWillMount() {
-			this._shouldStoreFetch(this.props.params.title)
-		}
-
-		componentDidMount() {
-			this._store.listen(this._onStoreChange)
-		}
-
-		componentWillUnmount() {
-			this._store.unlisten(this._onStoreChange)
+			this._shouldStoreFetch(this.props.params.title, this._store.getState())
 		}
 
 		componentWillReceiveProps(nextProps) {
-			this._shouldStoreFetch(nextProps.params.title)
+			this._shouldStoreFetch(nextProps.params.title, this._store.getState())
 		}
 
 		render() {
-			return <Component {...injectedProps} storeData={this.state} />
+			return (
+				<AltContainer stores={{data: this._store}}>
+					{Component}
+				</AltContainer>
+			)
 		}
 
-		_shouldStoreFetch(title) {
+		_shouldStoreFetch(title, state) {
 
 			// if no title, get most recent vlog
 			if (!title) return this._actions.getMostRecentVlog()
@@ -49,21 +38,17 @@ export default function injectPosts(Component, injectedProps) {
 				var dateArray = title.split('-').map(string => Number.parseInt(string))
 
 				// check if already cached
-				if (_.isEqual(this.state.dateSearch.date, dateArray)) return this._actions.setDateSearch(true, dateArray)
+				if (_.isEqual(state.dateSearch.date, dateArray)) return this._actions.setDateSearch(true, dateArray)
 
-				if (!this.state.dateSearch.is) this._actions.setDateSearch(true, dateArray)
+				if (!state.dateSearch.is) this._actions.setDateSearch(true, dateArray)
 				return this._actions.getPostsByDate(dateArray)
 			}
 
 			// must not be a date search
-			if (this.state.dateSearch.is) this._actions.setDateSearch(false)
+			if (state.dateSearch.is) this._actions.setDateSearch(false)
 
 			// get post by title
-			if (_.isEmpty(this.state.currentPost) || this.state.currentPost.title !== title) this._actions.getPostByTitle(title)
-		}
-
-		_onStoreChange() {
-			this.setState(this._store.getState())
+			if (_.isEmpty(state.currentPost) || state.currentPost.title !== title) this._actions.getPostByTitle(title)
 		}
 	}
 
