@@ -7,7 +7,6 @@ import getPostByTitle from './getPostByTitle'
 import getPostsByDate from './getPostsByDate'
 import render from './render'
 
-var counter = 0
 var router = express.Router()
 
 router.get('/api/mostrecent/:type', connectMongo, getMostRecentPost)

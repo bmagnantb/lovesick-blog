@@ -12,7 +12,7 @@
 		<button type="submit"></button>
 	</form>
 
-	<script type="text/javascript" src="/admin/login/app.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 
 </body>
 </html>
