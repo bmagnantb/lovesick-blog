@@ -5,21 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="<%= staticFileUrl %>/style.css">
 </head>
 <body>
-	<div id="page-container">
 
-		<header>
-			<h1>Lovesick</h1>
-		</header>
-
-		<div id="app-container"><%= content %></div>
-
-		<div class="footer-placeholder"></div>
-
-		<footer>
-			<h6>Copyright American Unicorn 2015</h6>
-		</footer>
-
-	</div>
+	<div id="app-container"><%= content %></div>
 
 	<script type="text/javascript" src="<%= staticFileUrl %>/app.js"></script>
 
