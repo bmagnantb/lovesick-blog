@@ -2,14 +2,14 @@ import express from 'express'
 import passport from 'passport'
 
 import { connectMongo } from '../../utils'
-import newBlog from './newBlog'
+import newPost from './newPost'
 import render from './render'
 
 var router = express.Router()
 
-router.post('/newBlog',
+router.post('/api/new-post',
 	connectMongo,
-	newBlog
+	newPost
 )
 
 router.get('*', render)

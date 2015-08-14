@@ -7,9 +7,11 @@ import { NewPostView, ConfirmPostView } from '../views'
 export default (
 	<Route path="/admin">
 		<Route path="/admin/panel" handler={Panel} />
-		<Route path="/admin/new-blog" handler={StoreContainers.injectNewPost(NewPostView)} />
-		<Route path="/admin/new-vlog" handler={StoreContainers.injectNewPost(NewPostView)} />
-		<Route path="/admin/confirm-post" handler={ConfirmPostView} />
+		<Route path="/admin/new-post" handler={StoreContainers.NewPost}>
+			<Route path="/admin/new-post/blog" handler={NewPostView} />
+			<Route path="/admin/new-post/vlog" handler={NewPostView} />
+			<Route path="/admin/new-post/confirm" handler={ConfirmPostView} />
+		</Route>
 		<Redirect from="*" to="/admin/panel" />
 	</Route>
 )

@@ -10,14 +10,20 @@ var store = class NewPostStore {
 			title: '',
 			body: '',
 			url: '',
-			type: '',
-			submitted: false
+			type: ''
+		}
+
+		this.submitted = {
+			pending: false,
+			completed: false
 		}
 
 		this.bindListeners({
 			updatePost: actions.updatePost,
 			setType: actions.setType,
-			submit: actions.submit
+			submitPost: actions.submitPost,
+			submitPending: actions.submitPending,
+			clearPost: actions.clearPost
 		})
 	}
 
@@ -29,8 +35,23 @@ var store = class NewPostStore {
 		this.post.type = type
 	}
 
-	submit() {
-		this.post.submitted = true
+	submitPost(msg) {
+		this.submitted.pending = false
+		this.submitted.completed = true
+	}
+
+	submitPending() {
+		this.submitted.pending = true
+	}
+
+	clearPost() {
+		this.post = {
+			title: '',
+			body: '',
+			url: '',
+			type: ''
+		}
+		this.submitted.completed = false
 	}
 }
 
