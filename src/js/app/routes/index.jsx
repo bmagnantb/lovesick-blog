@@ -6,8 +6,10 @@ import { HomeView, PostView, AppView } from '../views'
 
 export default (
 	<Route path="/" handler={AppView}>
-		<Route name="home" path="/" handler={StoreContainers.injectPosts(<HomeView />)} />
-		<Route name="post" path="/posts/:title" handler={StoreContainers.injectPosts(<PostView />)} />
-		<Redirect from="*" to="home" />
+		<Route path="/" handler={StoreContainers.Posts}>
+			<Route name="home" path="/" handler={HomeView} />
+			<Route name="post" path="/posts/:title" handler={PostView} />
+			<Redirect from="*" to="home" />
+		</Route>
 	</Route>
 )

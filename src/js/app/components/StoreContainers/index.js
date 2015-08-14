@@ -1,5 +1,5 @@
-import injectPosts from './injectPosts'
+import Posts from './Posts'
 
 export default {
-	injectPosts
+	Posts
 }
