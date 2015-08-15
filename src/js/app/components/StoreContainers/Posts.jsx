@@ -10,11 +10,11 @@ export default class PostsContainer {
 	}
 
 	componentWillMount() {
-		this._shouldStoreFetch(this.props.params.title, this._store.getState())
+		this._shouldStoreFetch(this.props.params.postRoute, this._store.getState())
 	}
 
 	componentWillReceiveProps(nextProps) {
-		this._shouldStoreFetch(nextProps.params.title, this._store.getState())
+		this._shouldStoreFetch(nextProps.params.postRoute, this._store.getState())
 	}
 
 	render() {
@@ -25,17 +25,17 @@ export default class PostsContainer {
 		)
 	}
 
-	_shouldStoreFetch(title, state) {
+	_shouldStoreFetch(postRoute, state) {
 
-		// if no title, get most recent vlog
-		if (!title) return this._actions.getMostRecentVlog()
+		// if no postRoute, get most recent vlog
+		if (!postRoute) return this._actions.getMostRecentVlog()
 
-		// check if title is a date, Date.parse will return NaN if not and date will not equal itself
-		var date = Date.parse(title)
+		// check if postRoute is a date, Date.parse will return NaN if not and date will not equal itself
+		var date = Date.parse(postRoute)
 		if (date === date) {
 
 			// only allow year, month, day
-			var dateArray = title.split('-').map(string => Number.parseInt(string))
+			var dateArray = postRoute.split('-').map(string => Number.parseInt(string))
 
 			// check if already cached
 			if (_.isEqual(state.dateSearch.date, dateArray)) return this._actions.setDateSearch(true, dateArray)
@@ -47,8 +47,8 @@ export default class PostsContainer {
 		// must not be a date search
 		if (state.dateSearch.is) this._actions.setDateSearch(false)
 
-		// get post by title
-		if (_.isEmpty(state.currentPost) || state.currentPost.title !== title) this._actions.getPostByTitle(title)
+		// get post by postRoute
+		if (_.isEmpty(state.currentPost) || state.currentPost.postRoute !== postRoute) this._actions.getPostByTitle(postRoute)
 	}
 }
 

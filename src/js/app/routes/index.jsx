@@ -8,7 +8,7 @@ export default (
 	<Route path="/" handler={AppView}>
 		<Route path="/" handler={StoreContainers.Posts}>
 			<Route name="home" path="/" handler={HomeView} />
-			<Route name="post" path="/posts/:title" handler={PostView} />
+			<Route name="post" path="/posts/:postRoute" handler={PostView} />
 			<Redirect from="*" to="home" />
 		</Route>
 	</Route>

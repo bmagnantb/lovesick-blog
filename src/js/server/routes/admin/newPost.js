@@ -1,14 +1,18 @@
 export default function newPost(req, res) {
 
 	var now = new Date()
-	req.query.timestamp = Date.parse(now)
-	req.query.date = {
-		year: now.getFullYear(),
-		month: now.getMonth(),
-		day: now.getDate()
-	}
+	var newPost = Object.assign({}, {
+		timestamp: Date.parse(now),
+		date: {
+			year: now.getFullYear(),
+			month: now.getMonth(),
+			day: now.getDate()
+		},
+		route: req.query.title.replace(/ /g, '-')
+	})
 
-	req.mongoDb.collection('posts').insertOne(req.query, (err, resp) => {
+	req.mongoDb.collection('posts').insertOne(newPost, (err, resp) => {
+		mongoDb.close()
 		if (err) res.send(err)
 		res.send(resp)
 	})

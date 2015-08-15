@@ -7,8 +7,8 @@ export default class PostListItem {
 		return (
 			<div>
 				<h3>
-					<Link to="post" params={{title: this.props.post.title}}>
-						{this.props.post.title.replace(/-/g, ' ')}
+					<Link to="post" params={{postRoute: this.props.post.route}}>
+						{this.props.post.title}
 					</Link>
 				</h3>
 				<h5>{date.toUTCString()}</h5>

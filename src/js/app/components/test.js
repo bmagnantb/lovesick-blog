@@ -97,11 +97,11 @@ describe('app components', () => {
 			expect(mock.props.children[0].props.children.type).to.equal(Link)
 		})
 
-		it('should render a Link component to "post" with params {title: post-title} that displays the post title', () => {
+		it('should render a Link component to "post" with params {postRoute: post-route} that displays the post title', () => {
 			var link = mock.props.children[0].props.children
 			expect(link.props.to).to.equal('post')
-			expect(link.props.params).to.deep.equal({title: mockPosts[1].title})
-			expect(link.props.children).to.be.a('string')
+			expect(link.props.params).to.deep.equal({postRoute: mockPosts[1].route})
+			expect(link.props.children).to.be.a('string').and.equal(mockPosts[1].title)
 		})
 
 		it('should render an h5 with date of post', () => {
