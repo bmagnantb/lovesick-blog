@@ -48,13 +48,15 @@ describe('app components', () => {
 
 	describe('DateSearch', () => {
 
-		var mock, mock2
+		var mock, mock2, mock3
 		before(() => {
 			var renderer = TestUtils.createRenderer()
 			renderer.render(<DateSearch results={[]} />)
 			mock = renderer.getRenderOutput()
-			renderer.render(<DateSearch results={mockPosts} />)
+			renderer.render(<DateSearch results={mockPosts.slice()} />)
 			mock2 = renderer.getRenderOutput()
+			renderer.render(<DateSearch results={mockPosts.slice().reverse()} />)
+			mock3 = renderer.getRenderOutput()
 		})
 
 		it('should render a div', () => {
@@ -68,6 +70,15 @@ describe('app components', () => {
 			mock2.props.children.forEach((child, index) => {
 				expect(child.key).to.equal(`post-${mockPosts[index].timestamp}`)
 			})
+		})
+
+		it('should render children most recent to least', () => {
+			var timestamp1ver1 = mock2.props.children[0].key.substr(5)
+			var timestamp1ver2 = mock3.props.children[0].key.substr(5)
+			var timestamp2ver1 = mock2.props.children[1].key.substr(5)
+			var timestamp2ver2 = mock3.props.children[1].key.substr(5)
+			expect(timestamp1ver1).to.be.greaterThan(timestamp2ver1)
+			expect(timestamp1ver2).to.be.greaterThan(timestamp2ver2)
 		})
 
 		it('should render no children when there are no results', () => {

@@ -6,7 +6,9 @@ export default class DateSearch {
 	render() {
 		return (
 			<div>
-				{this.props.results.map(post => <PostListItem post={post} key={`post-${post.timestamp}`} />)}
+				{this.props.results
+					.sort((p1, p2) => p2.timestamp - p1.timestamp)
+					.map(post => <PostListItem post={post} key={`post-${post.timestamp}`} />)}
 			</div>
 		)
 	}
