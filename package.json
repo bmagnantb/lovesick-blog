@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "webpack": "webpack --progress --colors",
-    "webpack-server": "webpack-dev-server --progress",
+    "webpack-server": "webpack-dev-server --progress --content-base build/ --hot",
     "start": "npm run watch & babel-node server.js",
     "watch": "parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run watch:css-admin' 'npm run watch:js-admin' 'npm run watch:css-login' 'npm run watch:js-login'",
     "watch:css": "watch 'npm run build:css' ./src/scss/blog",
