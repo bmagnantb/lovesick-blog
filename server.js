@@ -6,9 +6,11 @@ import session from 'express-session'
 import addRenderEngine from './src/js/server/addRenderEngine'
 import { initPassport, authMiddleware } from './src/js/server/utils'
 
-import { admin, adminLogin, main } from './src/js/server/routes'
+if (process.env.NODE_ENV === 'production' || piping({hook: true})) {
 
-if (process.env.PRODUCTION || piping({hook: true})) {
+	// prevent scss requires, must import routes after
+	require.extensions['.scss'] = () => {}
+	var { admin, adminLogin, main } = require('./src/js/server/routes')
 
 	var app = express()
 

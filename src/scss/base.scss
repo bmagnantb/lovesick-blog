@@ -54,3 +54,20 @@ p {
 	margin: 0 auto 1em;
 	max-width: 30em;
 }
+
+header {
+	padding: .5em 0 1em;
+	text-align: center;
+}
+
+footer {
+	bottom: 0;
+	height: 1.5em;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-placeholder {
+	height: 1.5em;
+}
