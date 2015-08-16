@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>Lovesick</title>
+	<% if (process.env.NODE_ENV !== 'development') { %>
+		<link rel="stylesheet" href="<%= staticFileUrl %>/style.css">
+	<% } %>
 </head>
 <body>
 

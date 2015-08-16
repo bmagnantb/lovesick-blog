@@ -4,15 +4,11 @@
   "description": "Blog on living with chronic disease",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --progress --content-base build/ --hot --inline & babel-node server.js",
-    "build:css": "node-sass ./src/scss/blog/style.scss ./build/style.css; postcss -u autoprefixer -o ./build/style.css ./build/style.css; csso ./build/style.css ./build/style.css",
-    "build:js": "browserify ./src/js/client/app.js --extension=.jsx -t babelify -t uglifyify -o ./build/app.js",
-    "build:css-admin": "node-sass ./src/scss/admin/style.scss ./build/admin/style.css; postcss -u autoprefixer -o ./build/admin/style.css ./build/admin/style.css; csso ./build/admin/style.css ./build/admin/style.css",
-    "build:js-admin": "browserify ./src/js/client/admin.js --extension=.jsx -t babelify -t uglifyify -o ./build/admin/app.js",
-    "build:css-login": "node-sass ./src/scss/login/style.scss ./build/admin/login/style.css; postcss -u autoprefixer -o ./build/admin/login/style.css ./build/admin/login/style.css; csso ./build/admin/login/style.css ./build/admin/login/style.css",
-    "build:js-login": "browserify ./srcy/js/client/login.js -t babelify -t uglifyify -o ./build/admin/login/app.js -v",
+    "start": "NODE_ENV=development webpack-dev-server --progress --content-base build/ --hot --inline & NODE_ENV=development babel-node server.js",
+    "production": "NODE_ENV=production webpack --progress & NODE_ENV=production babel-node server.js",
     "test": "mocha --compilers js:babel/register --reporter nyan './src/js/**/test.js'",
-    "ignores": "echo 'node_modules' > .gitignore; echo '.DS_Store' >> .gitignore; echo 'build' >> .gitignore"
+    "ignores": "echo 'node_modules' > .gitignore; echo '.DS_Store' >> .gitignore; echo 'build' >> .gitignore",
+    "postinstall": "NODE_ENV=production webpack; npm run ignores"
   },
   "repository": {
     "type": "git",
@@ -42,6 +38,7 @@
     "csso": "^1.3.11",
     "express": "^4.13.0",
     "express-session": "^1.11.3",
+    "extract-text-webpack-plugin": "^0.8.2",
     "iso": "^4.1.0",
     "jsdom": "^3.1.2",
     "lodash": "^3.9.3",
