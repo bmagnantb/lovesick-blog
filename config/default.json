@@ -1,3 +1,4 @@
 {
+	"staticFileUrl": "http://localhost:8080",
 	"serverUrl": "http://localhost:3000"
 }
