@@ -39,7 +39,7 @@ export default function render(req, res) {
 			res.render('authenticated', {
 				content,
 				iso: iso.render(),
-				staticFileUrl: process.env.SERVER_URL || config.get('serverUrl')
+				staticFileUrl: process.env.SERVER_URL || config.get('staticFileUrl')
 			})
 		})
 

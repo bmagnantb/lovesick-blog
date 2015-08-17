@@ -39,7 +39,7 @@ export default function render(req, res) {
 			res.render('index', {
 				content,
 				iso: iso.render(),
-				staticFileUrl: process.env.STATIC_FILE_URL || config.get('staticFileUrl')
+				staticFileUrl: process.env.SERVER_URL || config.get('staticFileUrl')
 			})
 		})
 
