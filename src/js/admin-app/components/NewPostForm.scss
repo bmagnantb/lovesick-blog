@@ -1,0 +1,31 @@
+.new-post-form {
+	& > * {
+		display: block;
+		margin-bottom: 1.5em;
+	}
+
+	input {
+		line-height: 1.5em;
+		min-width: 30em;
+	}
+
+	textarea {
+		max-width: 40em;
+		min-height: 20em;
+		overflow: hidden;
+		resize: none;
+		width: 100%;
+	}
+
+	input, textarea {
+		border: 1px solid #666;
+		border-radius: .15em;
+		font-size: 1em;
+		outline: none;
+
+		&:focus {
+			border-width: 2px;
+		}
+	}
+
+}
