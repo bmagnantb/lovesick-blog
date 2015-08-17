@@ -2,10 +2,10 @@ import React from 'react'
 import { Route, DefaultRoute, Redirect } from 'react-router'
 
 import { StoreContainers, Panel } from '../components'
-import { NewPostView, ConfirmPostView } from '../views'
+import { AppView, NewPostView, ConfirmPostView } from '../views'
 
 export default (
-	<Route path="/admin">
+	<Route path="/admin" handler={AppView}>
 		<Route path="/admin/panel" handler={Panel} />
 		<Route path="/admin/new-post" handler={StoreContainers.NewPost}>
 			<Route path="/admin/new-post/blog" handler={NewPostView} />

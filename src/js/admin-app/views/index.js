@@ -1,9 +1,9 @@
+import AppView from './AppView'
 import ConfirmPostView from './ConfirmPostView'
-import HomeView from './HomeView'
 import NewPostView from './NewPostView'
 
 export default {
+	AppView,
 	ConfirmPostView,
-	HomeView,
 	NewPostView
 }

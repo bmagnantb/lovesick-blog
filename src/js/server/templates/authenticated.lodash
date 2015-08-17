@@ -2,19 +2,13 @@
 <html>
 <head>
 	<title>Lovesick Admin</title>
-	<link rel="stylesheet" type="text/css" href="<%= staticFileUrl %>/admin/style.css">
+	<% if (process.env.NODE_ENV !== 'development') { %>
+		<link rel="stylesheet" href="<%= staticFileUrl %>/admin/style.css">
+	<% } %>
 </head>
 <body>
 
-	<div id="page-container">
-
-		<header>
-			<h1>Lovesick Admin</h1>
-		</header>
-
-		<div id="app-container"><%= content %></div>
-
-	</div>
+	<div id="app-container"><%= content %></div>
 
 	<script type="text/javascript" src="<%= staticFileUrl %>/admin/app.js"></script>
 
