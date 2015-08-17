@@ -12,7 +12,7 @@ export default function newPost(req, res) {
 	})
 
 	req.mongoDb.collection('posts').insertOne(newPost, (err, resp) => {
-		mongoDb.close()
+		req.mongoDb.close()
 		if (err) res.send(err)
 		res.send(resp)
 	})

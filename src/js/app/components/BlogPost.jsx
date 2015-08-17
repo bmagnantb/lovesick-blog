@@ -1,5 +1,7 @@
 import React from 'react'
 
+require('./BlogPost.scss')
+
 export default class BlogPost {
 	render() {
 		return (

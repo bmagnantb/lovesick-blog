@@ -3,6 +3,8 @@ import _ from 'lodash'
 
 import { BlogPost, DateSearch, Sidebar, VlogPost } from '../components'
 
+require('./PostView.scss')
+
 export default class PostView {
 
 	render() {

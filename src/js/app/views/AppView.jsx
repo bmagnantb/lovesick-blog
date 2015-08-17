@@ -1,6 +1,8 @@
 import React from 'react'
 import { RouteHandler, Link } from 'react-router'
 
+require('../../../scss/style.scss')
+
 export default class AppView {
 	render() {
 		return (
