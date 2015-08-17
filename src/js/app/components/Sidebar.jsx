@@ -1,5 +1,7 @@
 import React from 'react'
 
+require('./Sidebar.scss')
+
 export default class Sidebar {
 	render() {
 		return (

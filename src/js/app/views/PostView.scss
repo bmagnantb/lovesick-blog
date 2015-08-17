@@ -1,0 +1,10 @@
+.post-view {
+	& > * {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	main {
+		width: 70%;
+	}
+}

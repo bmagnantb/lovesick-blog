@@ -1,15 +1,17 @@
 var autoprefixer = require('autoprefixer-core')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+var isDev = process.env.NODE_ENV === 'development' ? true : false
+
 module.exports = {
 	entry: {
-		app: process.env.NODE_ENV === 'development'
-			? ['webpack/hot/dev-server', './src/js/client/app.js']
-			: './src/js/client/app.js'
+		"./": isDev ? ['webpack/hot/dev-server', './src/js/client/app.js'] : './src/js/client/app.js',
+		"admin/": isDev ? ['webpack/hot/dev-server', './src/js/client/admin.js'] : './src/js/client/admin.js',
+		"admin/login/": isDev ? ['webpack/hot/dev-server', './src/js/client/login.js'] : './src/js/client/login.js'
 	},
 	output: {
 		path: __dirname + '/build',
-		filename: 'app.js'
+		filename: '[name]app.js'
 	},
 	module: {
 		loaders: [
@@ -30,7 +32,7 @@ module.exports = {
 		}
 	},
 	plugins: [
-		new ExtractTextPlugin('style.css')
+		new ExtractTextPlugin('[name]style.css')
 	],
 	resolve: {
 		extensions: ['', '.js', '.jsx']

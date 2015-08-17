@@ -3,6 +3,8 @@ import _ from 'lodash'
 
 import { VlogPost, Sidebar } from '../components'
 
+require('./HomeView.scss')
+
 export default class HomeView {
 	render() {
 		if (_.isEmpty(this.props.data.currentPost)) return <div className="post-view"></div>

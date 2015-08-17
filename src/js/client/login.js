@@ -1,5 +1,7 @@
 import request from 'superbird'
 
+require('../../scss/style.scss')
+
 window.onload = app
 
 function app() {

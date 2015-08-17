@@ -5,6 +5,8 @@ import marked from 'marked'
 import { Autobind, makeEventStream } from '../../utils'
 import { NewPostForm, Preview } from '../components'
 
+require('./NewPostView.scss')
+
 marked.setOptions({ sanitize: true })
 
 export default class NewPostView {

@@ -1,5 +1,7 @@
 import React from 'react'
 
+require('./VlogPost.scss')
+
 export default class VlogPost {
 	render() {
 		return (
