@@ -3,7 +3,8 @@ import Rx from 'rx'
 import marked from 'marked'
 
 import { Autobind, makeEventStream } from '../../utils'
-import { NewPostForm, Preview } from '../components'
+import { NewPostForm } from '../components'
+import { BlogPost, VlogPost } from '../../app/components'
 
 require('./NewPostView.scss')
 
@@ -39,10 +40,15 @@ export default class NewPostView {
 	}
 
 	render() {
+		var post
+		if (this.props.data.post.type === 'blog') post = <BlogPost post={this.props.data.post} />
+		else if (this.props.data.post.type === 'vlog') post = <VlogPost post={this.props.data.post} />
+		else throw new Error('NewPostView requires a post with a type blog or vlog')
+
 		return (
 			<div className="new-post">
 				<NewPostForm ref="postForm" postType={this.props.data.post.type} handlers={this.handlers} />
-				<Preview post={this.props.data.post} />
+				{post}
 			</div>
 		)
 	}
