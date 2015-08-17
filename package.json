@@ -4,8 +4,8 @@
   "description": "Blog on living with chronic disease",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --progress & NODE_ENV=development babel-node server.js",
-    "production": "NODE_ENV=production webpack --progress & NODE_ENV=production babel-node server.js",
+    "start": "NODE_ENV=development webpack-dev-server --progress & NODE_ENV=development node server.js",
+    "production": "NODE_ENV=production webpack --progress & NODE_ENV=production node server.js",
     "test": "mocha --compilers js:babel/register --reporter nyan './src/js/**/test.js'",
     "ignores": "echo 'node_modules' > .gitignore; echo '.DS_Store' >> .gitignore; echo 'build' >> .gitignore",
     "postinstall": "NODE_ENV=production webpack; npm run ignores"
