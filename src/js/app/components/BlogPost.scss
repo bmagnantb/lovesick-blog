@@ -1,4 +1,8 @@
+@import '../../../scss/variables';
+
 .blog-post {
+	@include component();
+
 	margin: 0 auto;
 	text-align: center;
 }

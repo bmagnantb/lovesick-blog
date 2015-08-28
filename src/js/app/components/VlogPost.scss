@@ -1,5 +1,8 @@
+@import '../../../scss/variables';
+
 .vlog-post {
-	margin: 0 auto;
+	@include component();
+
 	text-align: center;
 
 	iframe {
