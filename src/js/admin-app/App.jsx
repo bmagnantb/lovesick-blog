@@ -1,7 +1,8 @@
 import React from 'react'
 import { RouteHandler, Link } from 'react-router'
+import { Provider } from 'react-redux'
 
-require('../../../scss/style.scss')
+require('../../scss/style.scss')
 
 export default class AppView {
 	render() {
@@ -11,7 +12,9 @@ export default class AppView {
 					<h1><Link to="/admin">Lovesick Admin</Link></h1>
 				</header>
 
-				<RouteHandler />
+				<Provider>
+					{() => <RouteHandler />}
+				</Provider>
 			</div>
 		)
 	}

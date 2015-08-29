@@ -12,6 +12,5 @@
 
 	<script type="text/javascript" src="<%= staticFileUrl %>/app.js"></script>
 
-	<%= iso %>
 </body>
 </html>

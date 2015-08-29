@@ -1,11 +1,8 @@
 import React from 'react'
 import Router from 'react-router'
-import Iso from 'iso'
-import Bluebird from 'bluebird'
 import config from 'config'
-import AltContainer from 'alt/AltContainer'
 
-import { routes, newAltApp } from '../../../app'
+import routes from '../../../app/routes'
 
 export default function render(req, res) {
 
@@ -24,25 +21,12 @@ export default function render(req, res) {
 
 	router.run((Handler, state) => {
 
-		var alt = newAltApp()
-		var iso = new Iso()
-
 		//first render
-		React.renderToString(<AltContainer flux={alt}><Handler /></AltContainer>)
+		var content = React.renderToString(<Handler />)
 
-		// wait for async actions to complete
-		Bluebird.all(alt.asyncActions).then(() => {
-
-			// 2nd render & send
-			var content = React.renderToString(<AltContainer flux={alt}><Handler /></AltContainer>)
-			iso.add('', alt.takeSnapshot())
-			res.render('index', {
-				content,
-				iso: iso.render(),
-				staticFileUrl: process.env.SERVER_URL || config.get('staticFileUrl')
-			})
+		res.render('index', {
+			content,
+			staticFileUrl: process.env.SERVER_URL || config.get('staticFileUrl')
 		})
-
-
 	})
 }

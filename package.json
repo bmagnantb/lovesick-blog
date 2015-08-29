@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/bmagnantb/lovesick-blog-podcast",
   "dependencies": {
-    "alt": "^0.16.10",
     "autoprefixer-core": "^5.2.1",
     "babel": "^5.6.3",
     "babel-loader": "^5.3.2",
