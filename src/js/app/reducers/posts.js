@@ -1,6 +1,7 @@
 import {
 	RECENT_VLOG_REQUEST, RECENT_VLOG_SUCCESS, RECENT_VLOG_FAIL,
-	POST_BY_TITLE_REQUEST, POST_BY_TITLE_SUCCESS, POST_BY_TITLE_FAIL
+	POST_BY_TITLE_REQUEST, POST_BY_TITLE_SUCCESS, POST_BY_TITLE_FAIL,
+	POSTS_BY_DATE_REQUEST, POSTS_BY_DATE_SUCCESS, POSTS_BY_DATE_FAIL
 } from '../actions/types'
 
 var initial = {
@@ -19,12 +20,14 @@ export default (state = initial, { type, payload }) => {
 			return {...state, requesting: true, error: false, mostRecentRoute: null}
 
 		case POST_BY_TITLE_REQUEST:
+		case POSTS_BY_DATE_REQUEST:
 			return {...state, requesting: true, error: false}
 
 /* ----------- FAILED REQUEST -------------- */
 
 		case RECENT_VLOG_FAIL:
 		case POST_BY_TITLE_FAIL:
+		case POSTS_BY_DATE_FAIL:
 			return {...state, requesting: false, error: true}
 
 /* ---------- REQUEST SUCCESSES -------------- */
@@ -41,6 +44,16 @@ export default (state = initial, { type, payload }) => {
 			return {
 				...state,
 				cache: {...state.cache, [payload.route]: payload},
+				requesting: false
+			}
+
+		case POSTS_BY_DATE_SUCCESS:
+			var freshPosts = payload.reduce((acc, post) => {
+				return {...acc, [post.route]: post}
+			}, {})
+			return {
+				...state,
+				cache: {...state.cache, ...freshPosts},
 				requesting: false
 			}
 

@@ -66,3 +66,36 @@ function failPostByTitle() {
 		type: types.POST_BY_TITLE_FAIL
 	}
 }
+
+
+/* ----- GET POSTS BY DATE ----- */
+
+export function getPostsByDate(date) {
+	return dispatch => {
+		dispatch(requestPostsByDate())
+
+		return api.getPostsByDate(date)
+			.then(throwRequestError)
+			.then(resp => dispatch(receivePostsByDate(resp.body)))
+			.catch(resp => dispatch(failPostsByDate()))
+	}
+}
+
+function requestPostsByDate() {
+	return {
+		type: types.POSTS_BY_DATE_REQUEST
+	}
+}
+
+function receivePostsByDate(posts) {
+	return {
+		type: types.POSTS_BY_DATE_SUCCESS,
+		payload: posts
+	}
+}
+
+function failPostsByDate() {
+	return {
+		type: types.POSTS_BY_DATE_FAIL
+	}
+}
