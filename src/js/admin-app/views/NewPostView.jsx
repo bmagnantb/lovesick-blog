@@ -1,8 +1,10 @@
-import React from 'react'
 import Rx from 'rx'
+import React from 'react'
+import { connect } from 'react-redux'
 import marked from 'marked'
 
 import { Autobind, makeEventStream } from '../../utils'
+import { setPostType } from '../actions'
 import { NewPostForm } from '../components'
 import { BlogPost, VlogPost } from '../../app/components'
 
@@ -10,9 +12,10 @@ require('./NewPostView.scss')
 
 marked.setOptions({ sanitize: true })
 
-export default class NewPostView {
+class NewPostView {
 
 	componentWillMount() {
+
 		var updateTitle$ = makeEventStream()
 		updateTitle$
 			.debounce(400)
@@ -40,16 +43,32 @@ export default class NewPostView {
 	}
 
 	render() {
-		var post
-		if (this.props.data.post.type === 'blog') post = <BlogPost post={this.props.data.post} />
-		else if (this.props.data.post.type === 'vlog') post = <VlogPost post={this.props.data.post} />
-		else throw new Error('NewPostView requires a post with a type blog or vlog')
+		var post = this.props.post.type === 'blog'
+			? <BlogPost post={this.props.post} />
+			: <VlogPost post={this.props.post} />
 
 		return (
 			<div className="new-post">
-				<NewPostForm ref="postForm" postType={this.props.data.post.type} handlers={this.handlers} />
+				<NewPostForm
+					ref="postForm"
+					postType={this.props.post.type}
+					setPostType={this.setPostType.bind(this)}
+					handlers={this.handlers} />
 				{post}
 			</div>
 		)
 	}
+
+	setPostType(evt) {
+		this.props.dispatch(setPostType(evt.target.value))
+	}
 }
+
+export default connect(select)(NewPostView)
+
+function select(state, props) {
+	return {
+		post: state.newPost
+	}
+}
+

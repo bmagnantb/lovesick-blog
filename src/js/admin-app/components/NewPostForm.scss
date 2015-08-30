@@ -7,6 +7,16 @@
 	input {
 		line-height: 1.5em;
 		min-width: 30em;
+
+		&[type=radio] {
+			display: inline-block;
+			margin: 0 1em 1.5em 2em;
+		}
+	}
+
+	label {
+		display: inline-block;
+		margin-right: 1em;
 	}
 
 	textarea {
