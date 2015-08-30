@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, DefaultRoute, Redirect } from 'react-router'
 
-import { App } from '../App'
+import App from '../App'
 import { NewPostView, ConfirmPostView } from '../views'
 import { Panel } from '../components'
 
