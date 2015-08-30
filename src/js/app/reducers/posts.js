@@ -1,5 +1,6 @@
 import {
-	RECENT_VLOG_REQUEST, RECENT_VLOG_SUCCESS, RECENT_VLOG_FAIL
+	RECENT_VLOG_REQUEST, RECENT_VLOG_SUCCESS, RECENT_VLOG_FAIL,
+	POST_BY_TITLE_REQUEST, POST_BY_TITLE_SUCCESS, POST_BY_TITLE_FAIL
 } from '../actions/types'
 
 var initial = {
@@ -17,9 +18,13 @@ export default (state = initial, { type, payload }) => {
 		case RECENT_VLOG_REQUEST:
 			return {...state, requesting: true, error: false, mostRecentRoute: null}
 
+		case POST_BY_TITLE_REQUEST:
+			return {...state, requesting: true, error: false}
+
 /* ----------- FAILED REQUEST -------------- */
 
 		case RECENT_VLOG_FAIL:
+		case POST_BY_TITLE_FAIL:
 			return {...state, requesting: false, error: true}
 
 /* ---------- REQUEST SUCCESSES -------------- */
@@ -29,6 +34,13 @@ export default (state = initial, { type, payload }) => {
 				...state,
 				cache: {...state.cache, [payload.route]: payload},
 				mostRecentRoute: payload.route,
+				requesting: false
+			}
+
+		case POST_BY_TITLE_SUCCESS:
+			return {
+				...state,
+				cache: {...state.cache, [payload.route]: payload},
 				requesting: false
 			}
 

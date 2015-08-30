@@ -33,3 +33,36 @@ function failMostRecentVlog() {
 		type: types.RECENT_VLOG_FAIL
 	}
 }
+
+
+/* ----- GET POSTS BY TITLE ----- */
+
+export function getPostByTitle(title) {
+	return dispatch => {
+		dispatch(requestPostByTitle())
+
+		return api.getPostByTitle(title)
+			.then(throwRequestError)
+			.then(resp => dispatch(receivePostByTitle(resp.body)))
+			.catch(resp => dispatch(failPostByTitle()))
+	}
+}
+
+function requestPostByTitle() {
+	return {
+		type: types.POST_BY_TITLE_REQUEST
+	}
+}
+
+function receivePostByTitle(post) {
+	return {
+		type: types.POST_BY_TITLE_SUCCESS,
+		payload: post
+	}
+}
+
+function failPostByTitle() {
+	return {
+		type: types.POST_BY_TITLE_FAIL
+	}
+}
