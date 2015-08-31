@@ -56,12 +56,4 @@ export default class NewPostForm {
 		this.props.handlers.updateBody$(evt)
 		this.handlers.bodyHeight$(evt)
 	}
-
-	setVlogPost() {
-		this.props.setPostType('vlog')
-	}
-
-	setBlogPost() {
-		this.props.setPostType('blog')
-	}
 }
