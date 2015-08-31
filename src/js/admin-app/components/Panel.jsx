@@ -7,8 +7,7 @@ export default class Panel {
 	render() {
 		return (
 			<div className="panel">
-				<Link to="/admin/new-post/vlog">New Video</Link>
-				<Link to="/admin/new-post/blog">New Article</Link>
+				<Link to="/admin/new-post">New Post</Link>
 			</div>
 		)
 	}

@@ -1,3 +1,5 @@
+@import './variables';
+
 /****   BASE STYLES  ***/
 
 $header-base-font-size: 1em;
@@ -16,7 +18,9 @@ html {
 }
 
 body {
-	font-family: Vollkorn;
+	background-color: $background-color;
+	color: $font-color;
+	font-family: $font-family;
 	height: 100%;
 	line-height: 1.5;
 }
@@ -54,24 +58,48 @@ p {
 	max-width: 30em;
 }
 
-header {
-	padding: .5em 0 1em;
-	text-align: center;
+#app-container {
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
 }
 
-#app-container {
-	max-width: 80em;
-	margin: 0 auto;
+header {
+	@include component();
+
+	border-top: 0;
+	margin: 0 0 2.5em;
+	padding-top: .8em;
+	text-align: center;
+
+	a {
+		color: $font-color;
+		text-shadow: 2px 1px lighten($background-color, 10%);
+		text-decoration: none;
+	}
 }
 
 footer {
+	@include component();
+
+	border-bottom: 0;
 	bottom: 0;
-	height: 1.5em;
+	height: 2em;
+	left: 50%;
+	max-width: 70em;
 	position: absolute;
 	text-align: center;
+	transform: translateX(-50%);
 	width: 100%;
+
+	h6 {
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%)
+	}
 }
 
 .footer-placeholder {
-	height: 1.5em;
+	height: 1em;
 }

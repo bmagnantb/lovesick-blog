@@ -1,0 +1,15 @@
+$background-color: hsl(0, 0%, 85%);
+$box-shadow-color: darken($background-color, 3%);
+$box-shadow-length: 0px;
+$box-shadow-blur: 15px;
+$box-shadow-spread: 2px;
+$font-color: darken($background-color, 60%);
+$font-family: Vollkorn;
+
+@mixin component() {
+	background-color: #fff;
+	border-radius: .1em;
+	box-shadow: (-$box-shadow-length) (-$box-shadow-length) $box-shadow-blur $box-shadow-spread $box-shadow-color,
+	            $box-shadow-length $box-shadow-length $box-shadow-blur+5 $box-shadow-spread+1 darken($box-shadow-color, 3%);
+}
+

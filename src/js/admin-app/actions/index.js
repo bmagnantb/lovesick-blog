@@ -1,5 +1,3 @@
-import NewPostActions from './NewPostActions'
+import * as creators from './creators'
 
-export default [
-	NewPostActions
-]
+export default {...creators}

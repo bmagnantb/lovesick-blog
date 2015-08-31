@@ -1,9 +1,9 @@
-import AppView from './AppView'
+import DateSearchView from './DateSearchView'
 import HomeView from './HomeView'
 import PostView from './PostView'
 
 export default {
-	AppView,
+	DateSearchView,
 	HomeView,
 	PostView
 }

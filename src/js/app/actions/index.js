@@ -1,5 +1,3 @@
-import PostsActions from './PostsActions'
+import * as creators from './creators'
 
-export default [
-	PostsActions
-]
+export default {...creators}

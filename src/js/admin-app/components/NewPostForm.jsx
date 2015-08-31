@@ -35,11 +35,15 @@ export default class NewPostForm {
 
 	render() {
 		var url = this.props.postType === 'vlog'
-			? <input type="text" name="url" placeholder="url" ref="url" onChange={this.props.handlers.updateUrl$} />
+			? <input key="new-vlog-url" type="text" name="url" placeholder="url" ref="url" onChange={this.props.handlers.updateUrl$} />
 			: null
 
 		return (
 			<form className="new-post-form" onSubmit={evt => evt.preventDefault()}>
+				<input id="vlog-radio" type="radio" name="post-type" value="vlog" onChange={this.props.setPostType} defaultChecked />
+				<label for="vlog-radio">Video</label>
+				<input id="blog-radio" type="radio" name="post-type" value="blog"onChange={this.props.setPostType} />
+				<label for="blog-radio">Article</label>
 				<input type="text" name="title" placeholder="title" ref="title" onChange={this.props.handlers.updateTitle$} autofocus />
 				{url}
 				<textarea name="body" placeholder="body" ref="body" onChange={this.onBodyChange} />

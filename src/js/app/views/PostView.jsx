@@ -1,19 +1,27 @@
-import React from 'react'
 import _ from 'lodash'
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { BlogPost, DateSearch, Sidebar, VlogPost } from '../components'
+import { getPostByTitle } from '../actions'
+import { BlogPost, DateSearch, PostLoadingError, Sidebar, VlogPost } from '../components'
 
 require('./PostView.scss')
 
-export default class PostView {
+class PostView {
+	componentWillMount() {
+		if (_.isEmpty(this.props.post)) this.props.dispatch(getPostByTitle(this.props.params.postRoute))
+	}
 
 	render() {
-		if (_.isEmpty(this.props.data.currentPost) && !this.props.data.dateSearch.is) return <div className="post-view"></div>
-
 		var PostComponent
-		if (this.props.data.dateSearch.is) PostComponent = <DateSearch results={this.props.data.dateSearch.results} />
-		else if (this.props.data.currentPost.type === 'blog') PostComponent = <BlogPost post={this.props.data.currentPost} />
-		else if (this.props.data.currentPost.type === 'vlog') PostComponent = <VlogPost post={this.props.data.currentPost} />
+		if (this.props.error)
+			PostComponent = <PostLoadingError reload={this.reloadPost.bind(this)} />
+		else if (this.props.requesting || _.isEmpty(this.props.post))
+			PostComponent = <div>Loading</div>
+		else if (this.props.post.type === 'blog')
+			PostComponent = <BlogPost post={this.props.post} />
+		else if (this.props.post.type === 'vlog')
+			PostComponent = <VlogPost post={this.props.post} />
 
 		return (
 			<div className="post-view">
@@ -23,5 +31,20 @@ export default class PostView {
 				<Sidebar />
 			</div>
 		)
+	}
+
+	reloadPost() {
+		this.props.dispatch(getPostByTitle(this.props.params.postRoute))
+	}
+}
+
+export default connect(select)(PostView)
+
+function select(state, props) {
+	var { requesting, error, cache } = state.posts
+	return {
+		post: cache[props.params.postRoute],
+		requesting,
+		error
 	}
 }

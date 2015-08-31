@@ -1,9 +1,9 @@
-import AltApp from './AltApp'
 import Autobind from './Autobind'
 import makeEventStream from './makeEventStream'
+import throwRequestError from './throwRequestError'
 
 export default {
-	AltApp,
 	Autobind,
-	makeEventStream
+	makeEventStream,
+	throwRequestError
 }
