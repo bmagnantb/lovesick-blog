@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import marked from 'marked'
 
 import { Autobind, makeEventStream } from '../../utils'
-import { setPostType } from '../actions'
+import { setPostType, updatePost } from '../actions'
 import { NewPostForm } from '../components'
 import { BlogPost, VlogPost } from '../../app/components'
 
@@ -20,20 +20,20 @@ class NewPostView {
 		updateTitle$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.title).value)
-			.subscribe(title => this.props.actions.updatePost({ title }))
+			.subscribe(title => this.props.dispatch(updatePost({ title })))
 
 		var updateBody$ = makeEventStream()
 		updateBody$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.body).value)
 			.map(markdown => marked(markdown))
-			.subscribe(body => this.props.actions.updatePost({ body }))
+			.subscribe(body => this.props.dispatch(updatePost({ body })))
 
 		var updateUrl$ = makeEventStream()
 		updateUrl$
 			.debounce(400)
 			.map(evt => React.findDOMNode(this.refs.postForm.refs.url).value)
-			.subscribe(url => this.props.actions.updatePost({ url }))
+			.subscribe(url => this.props.dispatch(updatePost({ url })))
 
 		this.handlers = {
 			updateTitle$,

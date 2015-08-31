@@ -6,3 +6,10 @@ export function setPostType(postType) {
 		payload: postType
 	}
 }
+
+export function updatePost(update) {
+	return {
+		type: types.UPDATE_POST,
+		payload: update
+	}
+}
